@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+  id="WebApp_ID"
+  version="2.5">
+  <display-name>hacreem</display-name>
+  
+   
+ 
+  <servlet>
+     <servlet-name>action</servlet-name>
+     <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+     <init-param>
+       <param-name>config</param-name>
+       <param-value>/WEB-INF/struts-config.xml</param-value>
+     </init-param>
+     <init-param>
+       <param-name>config/3itracker</param-name>
+       <param-value>/WEB-INF/struts-tracker-config.xml</param-value>
+     </init-param>
+     <init-param>
+       <param-name>debug</param-name>
+       <param-value>3</param-value>
+     </init-param>
+     <init-param>
+       <param-name>detail</param-name>
+       <param-value>3</param-value>
+     </init-param>
+     <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet>
+     <servlet-name>velocity</servlet-name>
+     <servlet-class>org.apache.velocity.tools.view.servlet.VelocityLayoutServlet</servlet-class>
+     <init-param>
+         <param-name>org.apache.velocity.toolbox</param-name>
+         <param-value>/WEB-INF/velocity-toolbox.xml</param-value>
+     </init-param>
+     <init-param>
+         <param-name>org.apache.velocity.properties</param-name>
+         <param-value>/WEB-INF/velocity.properties</param-value>
+     </init-param>
+         <load-on-startup>10</load-on-startup>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ComanyServlet</servlet-name>
+    <servlet-class>com.cisco.grcdfi.servlets.reports.ComanyServlet</servlet-class>
+  </servlet>
+   <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SNMEServlet</servlet-name>
+    <servlet-class>com.cisco.grcdfi.servlets.reports.SNMEServlet</servlet-class>
+  </servlet>
+  
+<servlet>
+      <servlet-name>hacker</servlet-name>
+      <servlet-class>com.servlet.MainServlet</servlet-class>
+  </servlet>
+  
+   <servlet-mapping>
+    <servlet-name>monitor</servlet-name>
+    <url-pattern>/monitor.jsp</url-pattern>
+    </servlet-mapping>
+ <!-- End EMAN Monitor -->  
+  
+  
+  
+  <servlet-mapping>
+    <servlet-name>action</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>velocity</servlet-name>
+    <url-pattern>*.vm</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ComanyServlet</servlet-name>
+    <url-pattern>/servlet/ComanyServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SNMEServlet</servlet-name>
+    <url-pattern>/servlet/SNMEServlet</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <jsp-config>
+    <taglib>
+        <taglib-uri>/WEB-INF/struts-tiles.tld</taglib-uri>
+        <taglib-location>/WEB-INF/struts-tiles.tld</taglib-location>
+    </taglib>
+    <taglib>
+        <taglib-uri>/WEB-INF/struts-bean.tld</taglib-uri>
+        <taglib-location>/WEB-INF/struts-bean.tld</taglib-location>
+    </taglib>
+    <taglib>
+        <taglib-uri>/WEB-INF/struts-html.tld</taglib-uri>
+        <taglib-location>/WEB-INF/struts-html.tld</taglib-location>
+    </taglib>
+    <taglib>
+        <taglib-uri>/WEB-INF/struts-logic.tld</taglib-uri>
+        <taglib-location>/WEB-INF/struts-logic.tld</taglib-location>
+    </taglib>
+    <taglib>
+        <taglib-uri>/tags/jstl-fmt</taglib-uri>
+        <taglib-location>/WEB-INF/fmt.tld</taglib-location>
+    </taglib>
+    <taglib>
+        <taglib-uri>/WEB-INF/sql.tld</taglib-uri>
+        <taglib-location>/WEB-INF/sql.tld</taglib-location>
+    </taglib>
+    
+    <taglib>
+        <taglib-uri>/WEB-INF/displaytag-11.tld</taglib-uri>
+        <taglib-location>/WEB-INF/displaytag-11.tld</taglib-location>
+    </taglib>
+    
+    <taglib>
+		<taglib-uri>/WEB-INF/tld/dfi-tags.tld</taglib-uri>
+		<taglib-location>/WEB-INF/tld/dfi-tags.tld</taglib-location>
+	</taglib>
+	<taglib>
+		<taglib-uri>/tags/grcdfi-menu</taglib-uri>
+		<taglib-location>/WEB-INF/tld/dfi-tabbedmenu.tld</taglib-location>
+	</taglib>
+	<taglib>
+		<taglib-uri>/tags/pager-taglib</taglib-uri>
+		<taglib-location>/WEB-INF/tld/pager-taglib.tld</taglib-location>
+	</taglib>
+  </jsp-config>
+  
+  <session-config>
+    <session-timeout>60</session-timeout> <!-- 3 hours --> 
+  </session-config>
+  
+  <!--Security settings for OAM --> 
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Protected Area</web-resource-name>
+        <url-pattern>/*</url-pattern>
+          <http-method>GET</http-method>
+          <http-method>POST</http-method>
+      </web-resource-collection>
+      
+    
+	
+      <!-- <auth-constraint>
+        <role-name>AllAuthenticatedUsers</role-name>
+      </auth-constraint> -->
+      
+      <auth-constraint>
+	<role-name>*</role-name>
+  </auth-constraint>
+  
+
+      
+  </security-constraint>
+  
+   <security-constraint>
+		<web-resource-collection>
+      		<web-resource-name>UnProtected Area</web-resource-name>
+        	<url-pattern>/monitor.jsp</url-pattern>
+        	<http-method>GET</http-method>
+        	<http-method>POST</http-method>
+     	</web-resource-collection>
+    </security-constraint> 	
+  <login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name>CEC</realm-name>
+  </login-config>
+
+  <security-role>
+  <role-name>*</role-name>
+</security-role>
+  
+  
+
+</web-app>
+
